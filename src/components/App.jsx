@@ -1,16 +1,31 @@
+import { lazy, Suspense } from 'react';
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Layout } from './Layout/Layout';
+
+const SingleMoviePage = lazy(() => import('../pages/SearchMoviePage/SearchMoviePage'));
+const Home = lazy(() => import('../pages/Home/Home'));
+const CastPage = lazy(() => import('../pages/SingleMoviePage/CastPage/CastPage'));
+const ReviewsPage = lazy(() => import('../pages/SingleMoviePage/ReviewsPage/ReviewsPage'));
+const SearchMoviePage = lazy(() => import('../pages/SearchMoviePage/SearchMoviePage'));
+
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework new template
-    </div>
+    <BrowserRouter basename="goit-react-hw-05-movies">
+      <Layout>
+        <Suspense fallback={<p>Loading...</p>}>
+
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="movies/:movieId" element={<SingleMoviePage />} >
+                <Route path="cast" element={<CastPage />} />
+                <Route path="reviews" element={<ReviewsPage />} />
+              </Route>
+              <Route path="movies" element={<SearchMoviePage />} />
+          </Routes>
+        </Suspense>
+      </Layout >
+    </BrowserRouter>
   );
 };
