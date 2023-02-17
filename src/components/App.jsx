@@ -3,7 +3,7 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
 
-const SingleMoviePage = lazy(() => import('../pages/SearchMoviePage/SearchMoviePage'));
+const SingleMoviePage = lazy(() => import('../pages/SingleMoviePage/SingleMoviePage/SingleMoviePage'));
 const Home = lazy(() => import('../pages/Home/Home'));
 const CastPage = lazy(() => import('../pages/SingleMoviePage/CastPage/CastPage'));
 const ReviewsPage = lazy(() => import('../pages/SingleMoviePage/ReviewsPage/ReviewsPage'));
